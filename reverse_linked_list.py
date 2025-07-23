@@ -7,13 +7,20 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def reverseList(self, head: Optional[ListNode], prev=None) -> Optional[ListNode]:
+        if not head:
+            return prev
 
-        prev, curr = None, head
-        while curr:
-            tempNxt = curr.next
-            curr.next = prev
-            prev = curr
-            curr = tempNxt
+        nxt = head.next
+        head.next = prev
 
-        return prev
+        return self.reverseList(nxt, head) 
+
+        #prev, curr = None, head
+        #while curr:
+        #    tempNxt = curr.next
+        #    curr.next = prev
+        #    prev = curr
+        #    curr = tempNxt
+#
+        #return prev
