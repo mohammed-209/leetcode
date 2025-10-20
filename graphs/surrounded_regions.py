@@ -6,6 +6,7 @@ class Solution:
     def solve(self, board: List[List[str]]) -> None:
         ROWS, COLS = len(board), len(board[0])
 
+        #DFS function to mark the 'O's connected to the border
         def dfs(r, c):
             if r < 0 or c < 0 or r == ROWS or c == COLS or board[r][c] != "O":
                 return
@@ -17,6 +18,7 @@ class Solution:
             dfs(r, c-1)
             
 
+        #check first and last row
         for r in range(ROWS):
             if board[r][0] == "O":
                 dfs(r, 0)
@@ -29,7 +31,7 @@ class Solution:
             if board[ROWS-1][c] == "O":
                 dfs(ROWS-1, c)
 
-            
+        #flip the cells
         for r in range(ROWS):
             for c in range(COLS):
                 if board[r][c] == "O":
